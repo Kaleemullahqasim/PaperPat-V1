@@ -44,7 +44,7 @@ def download_pdf(paper, folder_name):
 # Function to bulk download selected papers using multithreading
 def bulk_download(papers, query):
     sanitized_query = sanitize_filename(query)
-    folder_name = f"{sanitized_query}_{datetime.now().strftime('%Y-%m-%d')}"
+    folder_name = f"/{sanitized_query}_{datetime.now().strftime('%Y-%m-%d')}"
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
