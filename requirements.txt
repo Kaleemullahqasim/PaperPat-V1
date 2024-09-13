@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 streamlit
 requests
-=======
-streamlit
-requests
->>>>>>> 1e3730938c731038c68bfe7a9b728d1f447507d8
