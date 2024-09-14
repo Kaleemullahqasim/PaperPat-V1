@@ -3,13 +3,11 @@ import streamlit as st
 from arxiv_fetcher import fetch_papers
 from paper_display import display_papers_with_pagination
 from paper_download import bulk_download
-from paper_citation import generate_bibtex, save_bibtex_file  # Import BibTeX functions
 from session_manager import initialize_session_state
 import os
 import re
 
-
-# # Function to sanitize filenames and folder names
+# Function to sanitize filenames and folder names
 def sanitize_filename(name):
     return re.sub(r'[^\w\-_\. ]', '_', name)  # Replace non-alphanumeric characters with underscores
 
@@ -21,9 +19,13 @@ def main():
     # Initialize session state
     initialize_session_state()
 
-    # Sidebar for search input and filters
+    # Sidebar for theme selection, search input, and filters
     with st.sidebar:
         st.title("🔍 arXiv Paper Search")
+
+        # Theme selection
+        theme = st.selectbox('Select Theme', ['Light', 'Dark', 'Coding'], index=0)
+        st.session_state['theme'] = theme  # Store theme in session state
 
         # Search input
         query = st.text_input("Enter your search term (e.g., 'machine learning')", "")
@@ -49,20 +51,30 @@ def main():
         # Search button
         search_button = st.button("🔍 Search")
 
-    # Main content area for results
-    st.title("arXiv Paper Search and Download Results")
+    # Apply custom CSS based on the selected theme
+    apply_theme(st.session_state['theme'])
+
+    # Main content area for results display h1 title in center aligned text color blue animated with fade in
+    st.markdown('<h1 style="text-align: center; color: white; animation: fadeIn;">arXiv Paper Engine</h1>', unsafe_allow_html=True)
+
 
     if search_button and query.strip():
         # Clear previous search results
         st.session_state.papers = []
         st.session_state.selected_papers = []
-        
+
         # Store the query in session state
         st.session_state.query = query
 
         # Fetch the papers
         with st.spinner("Searching for papers..."):
-            papers_response = fetch_papers(query, from_date.strftime('%Y%m%d'), to_date.strftime('%Y%m%d'), categories[category], max_results)
+            papers_response = fetch_papers(
+                query,
+                from_date.strftime('%Y%m%d'),
+                to_date.strftime('%Y%m%d'),
+                categories[category],
+                max_results
+            )
 
         if papers_response:
             # Store the fetched papers in session state
@@ -77,6 +89,22 @@ def main():
             st.session_state.selected_papers = st.session_state.papers
             bulk_download(st.session_state.papers, st.session_state.query)  # Use query from session state
 
+# Function to apply theme CSS
+def apply_theme(theme):
+    css_file = ''
+    if theme == 'Dark':
+        css_file = 'css/dark_theme.css'
+    elif theme == 'Light':
+        css_file = 'css/light_theme.css'
+    elif theme == 'Coding':
+        css_file = 'css/coding_theme.css'
+    else:
+        css_file = 'css/'  # Default to Light theme
+
+    # Read the CSS file
+    with open(css_file) as f:
+        css = f"<style>{f.read()}</style>"
+    st.markdown(css, unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()

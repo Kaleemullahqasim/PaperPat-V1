@@ -1,0 +1,95 @@
+/* dark_theme.css */
+
+/* General styling */
+body, .stApp {
+    background-color: #0e1117;
+    color: #ffffff;
+}
+
+/* Sidebar styling */
+section[data-testid="stSidebar"] > div:first-child {
+    background-color: #262626;
+}
+
+/* Header styling */
+h1 {
+    color: #ffffff;
+}
+
+/* Button styling */
+.stButton > button {
+    background-color: #1f77b4;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.stButton > button:hover {
+    background-color: #166086;
+    transform: scale(1.02);
+}
+
+/* Paper Container */
+.stContainer {
+    background-color: #1f1f1f;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border: 1px solid #33333333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Title Styling */
+.paper-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.paper-title a {
+    text-decoration: none;
+    color: #1a85ff;
+}
+
+.paper-title a:hover {
+    text-decoration: underline;
+    color: #e6f0ff;
+}
+
+/* Authors Styling */
+.paper-authors {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+/* Published Date Styling */
+.paper-published {
+    font-size: 14px;
+    color: #ffffff;
+    margin-bottom: 5px;
+}
+
+/* Abstract Styling */
+.paper-abstract {
+    font-size: 15px;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Expander Styling */
+.st-expander {
+    background-color: #1f1f1f;
+    color: #ffffff;
+    border: none;
+}
+.st-expander-header {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Input widget text color */
+.css-1cpxqw2 > * {
+    color: #ffffff;
+}
