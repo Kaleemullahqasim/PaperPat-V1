@@ -4,92 +4,185 @@
 body, .stApp {
     background-color: #0e1117;
     color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Sidebar styling */
-section[data-testid="stSidebar"] > div:first-child {
-    background-color: #262626;
-}
-
-/* Header styling */
+/* Style the main title */
 h1 {
-    color: #ffffff;
+    color: #58A6FF;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-/* Button styling */
-.stButton > button {
-    background-color: #1f77b4;
-    color: white;
-    border: none;
-    padding: 8px 12px;
+/* Center and style the login form container */
+div.login-form {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #161b22;
+    border-radius: 8px;
+}
+
+/* Style input fields */
+div.login-form input[type="text"],
+div.login-form input[type="password"],
+div.search-form input[type="text"] {
+    width: 100% !important;
+    max-width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #30363d;
     border-radius: 4px;
-    transition: background-color 0.3s, transform 0.2s;
-}
-.stButton > button:hover {
-    background-color: #166086;
-    transform: scale(1.02);
+    font-size: 16px;
+    background-color: #0d1117;
+    color: #c9d1d9;
 }
 
-/* Paper Container */
-.stContainer {
-    background-color: #1f1f1f;
+/* Style labels */
+div.login-form label,
+div.search-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #c9d1d9;
+}
+
+/* Style buttons */
+div.login-form button,
+div.stButton > button {
+    width: auto;
+    padding: 10px 20px;
+    background-color: #238636;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+div.login-form button:hover,
+div.stButton > button:hover {
+    background-color: #2ea043;
+}
+
+/* Center buttons */
+div.stButton {
+    text-align: center;
+}
+
+/* Style Streamlit selectbox */
+.stSelectbox > div > div {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Style the sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #161b22;
+}
+
+/* Style the expander header */
+.stExpanderHeader {
+    font-size: 18px;
+    font-weight: bold;
+    color: #58A6FF;
+}
+
+/* Style the date input and selectbox */
+.stDateInput, .stSelectbox, .stSlider {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Style the advanced options container */
+div.advanced-options {
+    padding: 10px;
+}
+
+/* Style columns in advanced options */
+.stColumns > div {
+    padding: 0 10px;
+}
+
+/* Style the paper display */
+.paper-container {
+    background-color: #161b22;
     padding: 15px;
     margin: 15px 0;
     border-radius: 8px;
-    border: 1px solid #33333333;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #30363d;
 }
 
-/* Title Styling */
-.paper-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
+/* Style paper titles */
 .paper-title a {
+    color: #58A6FF;
+    font-size: 20px;
+    font-weight: bold;
     text-decoration: none;
-    color: #1a85ff;
 }
 
 .paper-title a:hover {
     text-decoration: underline;
-    color: #e6f0ff;
 }
 
-/* Authors Styling */
-.paper-authors {
+/* Style authors and published date */
+.paper-authors, .paper-published {
+    color: #8b949e;
     font-size: 14px;
-    color: #ffffff;
-    margin-bottom: 5px;
 }
 
-/* Published Date Styling */
-.paper-published {
-    font-size: 14px;
-    color: #ffffff;
-    margin-bottom: 5px;
-}
-
-/* Abstract Styling */
+/* Style abstract text */
 .paper-abstract {
-    font-size: 15px;
-    color: #ffffff;
-    line-height: 1.6;
+    font-size: 14px;
+    color: #c9d1d9;
 }
 
-/* Expander Styling */
-.st-expander {
-    background-color: #1f1f1f;
-    color: #ffffff;
-    border: none;
+/* Style expander content */
+.st-expander-content {
+    padding: 10px 0;
 }
-.st-expander-header {
-    color: #ffffff;
+
+
+
+/* Center and style the login form container */
+div.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #F9F9F9; /* Adjust based on theme */
+    border-radius: 8px;
+}
+
+/* Style input fields */
+div.login-form input {
+    width: 100% !important;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #cccccc; /* Adjust based on theme */
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff; /* Adjust based on theme */
+    color: #333; /* Adjust based on theme */
+}
+
+/* Style labels */
+div.login-form label {
     font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #333; /* Adjust based on theme */
 }
 
-/* Input widget text color */
-.css-1cpxqw2 > * {
+/* Style the login button */
+div.login-form .stButton > button {
+    width: 100%;
+    background-color: #4B8BBE; /* Adjust based on theme */
     color: #ffffff;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+div.login-form .stButton > button:hover {
+    background-color: #3572A5; /* Adjust based on theme */
 }
