@@ -7,6 +7,8 @@ from paper_display import display_papers_with_pagination
 from paper_download import bulk_download
 from authentication import register_user, login_user
 from db_manager import init_db
+from db_manager import get_connection
+
 
 # Function to sanitize filenames and folder names
 def sanitize_filename(name):
@@ -15,6 +17,7 @@ def sanitize_filename(name):
 def main():
     # Initialize the database
     init_db()
+
 
     # Set page layout to wide to utilize full screen
     st.set_page_config(layout="wide")
@@ -70,14 +73,15 @@ def apply_theme(theme):
     st.markdown(css, unsafe_allow_html=True)
 
 def display_login_page():
-    st.title("Login")
-    st.markdown("Please enter your credentials to log in.")
+    st.title("🔑Login🔑")
+    
 
     # Center the login form using columns
     col1, col2, col3 = st.columns([1, 2, 1])
 
     with col2:
         with st.form(key='login_form'):
+            st.markdown("Please enter your credentials to log in.")
             # Username input
             st.markdown("<label for='login_username'>Username</label>", unsafe_allow_html=True)
             username = st.text_input("Username", key="login_username", label_visibility='collapsed')
@@ -96,7 +100,7 @@ def display_login_page():
             st.session_state['user_id'] = user_id
             st.session_state['username'] = username
             st.success(f"Logged in as {username}")
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.error("Invalid username or password")
 
@@ -124,7 +128,7 @@ def display_register_page():
     if register_button:
         if register_user(new_username, new_password):
             st.success("Registration successful! Please log in.")
-            st.experimental_rerun()
+            st.rerun()
         else:
             st.error("Username already exists. Please choose a different one.")
 
@@ -133,7 +137,7 @@ def display_logout():
     st.session_state['user_id'] = None
     st.session_state['username'] = ''
     st.success("You have been logged out.")
-    st.experimental_rerun()
+    st.rerun()
 
 def display_search_page():
     st.title("🔍 arXiv Paper Search")
@@ -205,3 +209,6 @@ def display_search_page():
 
 if __name__ == "__main__":
     main()
+
+
+

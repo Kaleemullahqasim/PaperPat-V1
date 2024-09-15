@@ -1,6 +1,3 @@
-
-
-
 import streamlit as st
 from paper_download import download_pdf
 from datetime import datetime

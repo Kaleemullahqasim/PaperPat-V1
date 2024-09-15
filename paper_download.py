@@ -5,10 +5,7 @@ import streamlit as st
 import re
 from time import sleep
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import logging
-
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
+from db_manager import get_connection
 
 # Function to sanitize filenames and folder names
 def sanitize_filename(name):
@@ -22,12 +19,9 @@ def download_pdf(paper, folder_name):
     file_path = os.path.join(folder_name, f"{sanitized_title}.pdf")
     pdf_url = paper['pdf_url']  # Use the direct PDF URL
 
-    logger.debug(f"Attempting to download PDF from: {pdf_url}")
-
     try:
         for attempt in range(3):  # Retry up to 3 times
             response = requests.get(pdf_url, stream=True)
-            logger.debug(f"Download attempt {attempt + 1} for {pdf_url}, status code: {response.status_code}")
             if response.status_code == 200 and 'application/pdf' in response.headers.get('Content-Type', ''):
                 with open(file_path, 'wb') as f:
                     for chunk in response.iter_content(chunk_size=1024):
@@ -36,29 +30,29 @@ def download_pdf(paper, folder_name):
 
                 # Check if the file size is larger than a small threshold (to prevent corrupted files)
                 if os.path.getsize(file_path) > 10 * 1024:  # File size should be larger than 10KB
-                    logger.debug(f"Successfully downloaded: {file_path}")
                     return sanitized_title  # Successfully downloaded
                 else:
-                    # Delete the incomplete file
-                    os.remove(file_path)
-                    logger.warning(f"Incomplete download for {pdf_url}, file too small.")
-                    sleep(1)  # Delay before retrying
+                    # Retry if the file size is too small
+                    st.warning(f"File too small for '{paper['title']}', retrying...")
             else:
-                logger.warning(f"Failed to download {pdf_url}, status code: {response.status_code}")
-                sleep(1)  # Delay before retrying
+                st.warning(f"Failed to download '{paper['title']}' (status code: {response.status_code}), retrying...")
 
-        # If all attempts fail
-        logger.error(f"Failed to download paper: {paper['title']} after 3 attempts.")
-        return None
+            sleep(1)  # Delay before retrying
+
+        st.error(f"Failed to download '{paper['title']}' after 3 attempts.")
+        return None  # Return None if the file couldn't be downloaded correctly
 
     except Exception as e:
-        logger.exception(f"Exception occurred while downloading '{paper['title']}': {e}")
+        st.error(f"Error downloading '{paper['title']}': {e}")
         return None
 
-# Function to bulk download selected papers using multithreading and progress bar
+# Function to bulk download selected papers using multithreading
 def bulk_download(papers, query):
-    logger.debug(f"Starting bulk download for query: {query}")
-    logger.debug(f"Number of papers to download: {len(papers)}")
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    from datetime import datetime
+    import os
+    import streamlit as st
+
     sanitized_query = sanitize_filename(query)
     folder_name = f"{sanitized_query}_{datetime.now().strftime('%Y-%m-%d')}"
     if not os.path.exists(folder_name):
@@ -81,10 +75,10 @@ def bulk_download(papers, query):
                     result = future.result()
                     if result:
                         downloaded_count += 1
-                    else:
-                        logger.error(f"Failed to download paper: {paper['title']}")
+                    # You can handle failed downloads if needed
                 except Exception as e:
-                    logger.exception(f"Error downloading paper '{paper['title']}': {e}")
+                    # Handle exceptions if needed
+                    pass
 
                 # Update progress bar and status text
                 progress = i / total_papers
@@ -100,6 +94,7 @@ def bulk_download(papers, query):
     # Generate and save the BibTeX file
     bibtex_content = generate_bibtex(papers)
     save_bibtex_file(bibtex_content, folder_name)
+
 
 # Function to generate BibTeX content
 def generate_bibtex(papers):

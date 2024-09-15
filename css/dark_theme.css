@@ -1,10 +1,13 @@
 /* dark_theme.css */
 
-/* General styling */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Source+Code+Pro&display=swap');
+
+/* General Styling */
 body, .stApp {
     background-color: #0e1117;
     color: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Fira Code', 'Source Code Pro', monospace; /* Enhanced coding fonts */
 }
 
 /* Style the main title */
@@ -12,6 +15,8 @@ h1 {
     color: #58A6FF;
     margin-bottom: 20px;
     text-align: center;
+    font-size: 2.5em;
+    text-shadow: 1px 1px #1e1e1e;
 }
 
 /* Center and style the login form container */
@@ -21,6 +26,8 @@ div.login-form {
     padding: 30px;
     background-color: #161b22;
     border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border: 1px solid #30363d;
 }
 
 /* Style input fields */
@@ -28,14 +35,22 @@ div.login-form input[type="text"],
 div.login-form input[type="password"],
 div.search-form input[type="text"] {
     width: 100% !important;
-    max-width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 12px;
+    margin-bottom: 20px;
     border: 1px solid #30363d;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
     background-color: #0d1117;
     color: #c9d1d9;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+div.login-form input[type="text"]:focus,
+div.login-form input[type="password"]:focus,
+div.search-form input[type="text"]:focus {
+    border-color: #58A6FF;
+    box-shadow: 0 0 5px #58A6FF;
+    outline: none;
 }
 
 /* Style labels */
@@ -44,25 +59,29 @@ div.search-form label {
     font-weight: bold;
     margin-bottom: 5px;
     display: block;
-    color: #c9d1d9;
+    color: #c9d1d9; /* Preserved as per requirement */
+    font-size: 14px;
 }
 
 /* Style buttons */
 div.login-form button,
 div.stButton > button {
     width: auto;
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: #238636;
     color: #ffffff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    font-family: 'Fira Code', monospace;
 }
 
 div.login-form button:hover,
 div.stButton > button:hover {
     background-color: #2ea043;
+    transform: translateY(-2px);
 }
 
 /* Center buttons */
@@ -79,6 +98,7 @@ div.stButton {
 /* Style the sidebar */
 section[data-testid="stSidebar"] {
     background-color: #161b22;
+    border-right: 1px solid #30363d;
 }
 
 /* Style the expander header */
@@ -86,6 +106,9 @@ section[data-testid="stSidebar"] {
     font-size: 18px;
     font-weight: bold;
     color: #58A6FF;
+    border-bottom: 1px solid #30363d;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 /* Style the date input and selectbox */
@@ -97,6 +120,9 @@ section[data-testid="stSidebar"] {
 /* Style the advanced options container */
 div.advanced-options {
     padding: 10px;
+    background-color: #0d1117;
+    border-radius: 6px;
+    border: 1px solid #30363d;
 }
 
 /* Style columns in advanced options */
@@ -107,34 +133,62 @@ div.advanced-options {
 /* Style the paper display */
 .paper-container {
     background-color: #161b22;
-    padding: 15px;
+    padding: 20px;
     margin: 15px 0;
     border-radius: 8px;
     border: 1px solid #30363d;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    display: flex; /* For uniform height */
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Ensure containers take full height */
 }
 
 /* Style paper titles */
+.paper-title {
+    min-height: 3em; /* Reserve space for two lines */
+    margin-bottom: 10px;
+}
+
 .paper-title a {
     color: #58A6FF;
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
+    transition: color 0.3s;
+    display: -webkit-box; /* For line clamping */
+    -webkit-line-clamp: 2; /* Limit to 2 lines */
+    line-clamp: 2; /* Standard property for compatibility */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 2.8em; /* Adjust based on line height */
 }
 
 .paper-title a:hover {
-    text-decoration: underline;
+    color: #2ea043;
+    text-decoration:solid, underline;
+}
+/* paper tile font size  */
+.paper-title a {
+    font-size: 18px;
 }
 
 /* Style authors and published date */
 .paper-authors, .paper-published {
     color: #8b949e;
     font-size: 14px;
+    margin-top: 5px;
 }
 
 /* Style abstract text */
 .paper-abstract {
     font-size: 14px;
     color: #c9d1d9;
+    margin-top: 10px;
+    line-height: 1.6;
+    font-family: 'Source Code Pro', monospace; /* More coding-like font */
+    text-align: inherit;
 }
 
 /* Style expander content */
@@ -142,47 +196,76 @@ div.advanced-options {
     padding: 10px 0;
 }
 
+/* Additional Coding-Themed Enhancements */
 
-
-/* Center and style the login form container */
-div.login-form {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #F9F9F9; /* Adjust based on theme */
-    border-radius: 8px;
-}
-
-/* Style input fields */
-div.login-form input {
-    width: 100% !important;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #cccccc; /* Adjust based on theme */
+/* Code blocks styling */
+pre, code {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    padding: 8px;
     border-radius: 4px;
-    font-size: 16px;
-    background-color: #fff; /* Adjust based on theme */
-    color: #333; /* Adjust based on theme */
+    font-family: 'Fira Code', monospace;
 }
 
-/* Style labels */
-div.login-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-    color: #333; /* Adjust based on theme */
+/* Links styling */
+a {
+    color: #58A6FF;
+    text-decoration: none;
 }
 
-/* Style the login button */
-div.login-form .stButton > button {
+a:hover {
+    text-decoration: underline;
+    color: #2ea043;
+}
+
+/* Tables styling */
+table {
     width: 100%;
-    background-color: #4B8BBE; /* Adjust based on theme */
-    color: #ffffff;
-    border-radius: 4px;
-    padding: 10px;
-    font-size: 16px;
+    border-collapse: collapse;
+    margin: 20px 0;
 }
 
-div.login-form .stButton > button:hover {
-    background-color: #3572A5; /* Adjust based on theme */
+table, th, td {
+    border: 1px solid #30363d;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    color: #c9d1d9;
+}
+
+th {
+    background-color: #0d1117;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    div.login-form {
+        padding: 20px;
+    }
+
+    div.login-form input[type="text"],
+    div.login-form input[type="password"],
+    div.search-form input[type="text"] {
+        padding: 8px;
+    }
+
+    div.login-form button,
+    div.stButton > button {
+        padding: 10px 20px;
+    }
+
+    .paper-title a {
+        font-size: 18px;
+        height: 2.4em; /* Adjust for smaller screens */
+    }
+
+    .paper-abstract {
+        font-size: 13px;
+    }
 }
