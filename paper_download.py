@@ -5,7 +5,6 @@ import streamlit as st
 import re
 from time import sleep
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from db_manager import get_connection
 
 # Function to sanitize filenames and folder names
 def sanitize_filename(name):
@@ -32,7 +31,6 @@ def download_pdf(paper, folder_name):
                 if os.path.getsize(file_path) > 10 * 1024:  # File size should be larger than 10KB
                     return sanitized_title  # Successfully downloaded
                 else:
-                    # Retry if the file size is too small
                     st.warning(f"File too small for '{paper['title']}', retrying...")
             else:
                 st.warning(f"Failed to download '{paper['title']}' (status code: {response.status_code}), retrying...")
@@ -47,14 +45,11 @@ def download_pdf(paper, folder_name):
         return None
 
 # Function to bulk download selected papers using multithreading
-def bulk_download(papers, query):
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-    from datetime import datetime
-    import os
-    import streamlit as st
-
+def bulk_download(papers, query, download_path="/Volumes/Research Papers/arxiv"):
     sanitized_query = sanitize_filename(query)
-    folder_name = f"{sanitized_query}_{datetime.now().strftime('%Y-%m-%d')}"
+    folder_name = os.path.join(download_path, f"{sanitized_query}_{datetime.now().strftime('%Y-%m-%d')}")
+    
+    # Ensure the directory exists
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
@@ -77,7 +72,6 @@ def bulk_download(papers, query):
                         downloaded_count += 1
                     # You can handle failed downloads if needed
                 except Exception as e:
-                    # Handle exceptions if needed
                     pass
 
                 # Update progress bar and status text
@@ -94,7 +88,6 @@ def bulk_download(papers, query):
     # Generate and save the BibTeX file
     bibtex_content = generate_bibtex(papers)
     save_bibtex_file(bibtex_content, folder_name)
-
 
 # Function to generate BibTeX content
 def generate_bibtex(papers):

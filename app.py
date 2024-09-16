@@ -7,7 +7,6 @@ from paper_display import display_papers_with_pagination
 from paper_download import bulk_download
 from authentication import register_user, login_user
 from db_manager import init_db
-from db_manager import get_connection
 
 
 # Function to sanitize filenames and folder names
@@ -143,7 +142,7 @@ def display_search_page():
     st.title("🔍 arXiv Paper Search")
 
     # Main search input wrapped in a container for styling
-    st.markdown("<div class='search-form'>", unsafe_allow_html=True)
+    # st.markdown("<div class='search-form'>", unsafe_allow_html=True)
     st.markdown("<label for='search_query'>Search Term</label>", unsafe_allow_html=True)
     query = st.text_input("Search Term", key="search_query", label_visibility='collapsed')
     st.markdown("</div>", unsafe_allow_html=True)

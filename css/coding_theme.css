@@ -1,267 +1,277 @@
 /* coding_theme.css */
 
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap');
+
+:root {
+  --background-primary: #1e1e1e;
+  --background-secondary: #252526;
+  --text-primary: #d4d4d4;
+  --text-secondary: #c9d1d9;
+  --accent-color: #61dafb;
+  --accent-color-hover: #005a9e;
+  --border-color: #3c3c3c;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+}
 
 /* General Styling */
-body, .stApp {
-    background-color: #1e1e1e; /* Slightly lighter than dark theme for distinction */
-    color: #d4d4d4; /* Softer text color for readability */
-    font-family: 'Fira Code', 'Source Code Pro', monospace; /* Modern coding fonts */
+body,
+.stApp {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  font-family: 'Fira Code', monospace; /* Changed to Fira Code */
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.6; /* Optimized line height for code */
+  font-family: 'Fira Code', monospace; /* Changed to Fira Code */
+  line-height: 1.6; 
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  color: var(--accent-color);
 }
 
-/* Style the main title */
 h1 {
-    color: #61dafb; /* Vibrant blue for a standout title */
-    margin-bottom: 20px;
-    text-align: center;
-    font-size: 2.5em;
-    text-shadow: 2px 2px #1e1e1e;
+  font-size: 2.2em; 
+  font-size: 2.5em;
+  font-size: 2.2em; 
 }
 
-/* Center and style the login form container */
-div.login-form {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #252526; /* Darker background for contrast */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    border: 1px solid #3c3c3c;
+h2 {
+  font-size: 1.8em;
+  font-size: 2em;
+  font-size: 1.8em;
 }
 
-/* Style input fields */
-div.login-form input[type="text"],
-div.login-form input[type="password"],
-div.search-form input[type="text"] {
-    width: 100% !important;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #555;
-    border-radius: 6px;
-    font-size: 16px;
-    background-color: #2d2d2d;
-    color: #d4d4d4;
-    transition: border 0.3s, box-shadow 0.3s;
+h3 {
+  font-size: 1.4em; 
+  font-size: 1.5em;
+  font-size: 1.4em; 
 }
 
-div.login-form input[type="text"]:focus,
-div.login-form input[type="password"]:focus,
-div.search-form input[type="text"]:focus {
-    border-color: #61dafb;
-    box-shadow: 0 0 5px #61dafb;
-    outline: none;
+p, ul, ol {
+  margin-bottom: 1rem;
+  font-size: 1em;
+  font-size: 1em;
 }
 
-/* Style labels */
-div.login-form label,
-div.search-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-    color: #d4d4d4; /* Ensuring labels remain unchanged */
-    font-size: 14px;
-}
-
-/* Style buttons */
-div.login-form button,
-div.stButton > button {
-    width: auto;
-    padding: 12px 24px;
-    background-color: #007acc; /* Bright blue for coding theme */
-    color: #ffffff;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    font-family: 'Fira Code', monospace;
-}
-
-div.login-form button:hover,
-div.stButton > button:hover {
-    background-color: #005a9e; /* Darker blue on hover */
-    transform: translateY(-2px);
-}
-
-/* Center buttons */
-div.stButton {
-    text-align: center;
-}
-
-/* Style Streamlit selectbox */
-.stSelectbox > div > div {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-/* Style the sidebar */
-section[data-testid="stSidebar"] {
-    background-color: #252526; /* Dark sidebar background */
-    border-right: 1px solid #3c3c3c;
-}
-
-/* Style the expander header */
-.stExpanderHeader {
-    font-size: 18px;
-    font-weight: bold;
-    color: #61dafb; /* Vibrant color for headers */
-    border-bottom: 1px solid #3c3c3c;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-}
-
-/* Style the date input and selectbox */
-.stDateInput, .stSelectbox, .stSlider {
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-/* Style the advanced options container */
-div.advanced-options {
-    padding: 10px;
-    background-color: #2d2d2d; /* Slightly lighter for distinction */
-    border-radius: 6px;
-    border: 1px solid #555;
-}
-
-/* Style columns in advanced options */
-.stColumns > div {
-    padding: 0 10px;
-}
-
-/* Style the paper display */
-.paper-container {
-    background-color: #252526; /* Consistent with login form */
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 8px;
-    border: 1px solid #3c3c3c;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    display: flex; /* For uniform height */
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%; /* Ensure containers take full height */
-}
-
-/* Style paper titles */
-.paper-title {
-    min-height: 3em; /* Reserve space for two lines */
-    margin-bottom: 10px;
-}
-
-.paper-title a {
-    color: #61dafb; /* Vibrant blue for links */
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s;
-    display: -webkit-box; /* For line clamping */
-    -webkit-line-clamp: 2; /* Limit to 2 lines */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 2.8em; /* Adjust based on line height */
-}
-
-.paper-title a:hover {
-    color: #005a9e; /* Darker blue on hover */
-    text-decoration: underline;
-}
-
-/* Style authors and published date */
-.paper-authors, .paper-published {
-    color: #d4d4d4;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-/* Style abstract text */
-.paper-abstract {
-    font-size: 14px;
-    color: #c9d1d9;
-    margin-top: 10px;
-    line-height: 1.6;
-    font-family: 'Fira Code', 'Source Code Pro', monospace; /* More coding-like font */
-    text-align: inherit;
-    /* Preserve formatting */
-}
-
-/* Style expander content */
-.st-expander-content {
-    padding: 10px 0;
-}
-
-/* Additional Coding-Themed Enhancements */
-
-/* Code blocks styling */
-pre, code {
-    background-color: #2d2d2d;
-    color: #c9d1d9;
-    padding: 8px;
-    border-radius: 4px;
-    font-family: 'Fira Code', monospace;
-}
-
-/* Links styling */
 a {
-    color: #61dafb;
-    text-decoration: none;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 a:hover {
-    text-decoration: underline;
-    color: #005a9e;
+  color: var(--accent-color-hover);
+  text-decoration: underline;
 }
 
-/* Tables styling */
+/* Layout & Containers */
+.main-container {
+  padding: 2rem;
+  max-width: 800px;
+  max-width: 800px; 
+  margin: 0 auto;
+}
+
+.login-form,
+.login-form, 
+.search-form {
+  background-color: var(--background-secondary);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+  border: 1px solid var(--border-color);
+}
+
+/* Form Elements */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-primary);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-size: 1em;
+  font-size: 1em;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 5px var(--accent-color);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-size: 1em;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+/* Buttons */
+button {
+  background-color: var(--accent-color);
+  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 1.5rem; 
+  border: none;
+  padding: 0.8rem 1.5rem; 
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center; 
+  display: inline-block; 
+  font-size: 1em; 
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: 500;
+  text-align: center; 
+  display: inline-block; 
+  font-size: 1em; 
+}
+
+button:hover {
+.stButton > button {
+  width: 100%; /* Make buttons fill container width by default */
+.stButton > button { 
+  width: auto; 
+  margin: 0 auto;
+}
+
+/* Streamlit Components */
+.stButton > button { 
+  width: auto; 
+  width: 100%;
+  width: 100%; 
+  font-size: 1em;
+}
+
+.stSelectbox,
+.stDateInput,
+.stSlider {
+  width: 100%; 
+  font-size: 1em;
+}
+
+  font-size: 1.2rem;
+  font-size: 1.2em;
+section[data-testid="stSidebar"] {
+  background-color: var(--background-secondary);
+  border-right: 1px solid var(--border-color);
+}
+
+.stExpanderHeader {
+  font-size: 1.2em;
+  font-weight: 500;
+  color: var(--accent-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+  box-shadow: 0 2px 4px var(--shadow-color);
+  box-shadow: 0 2px 4px var(--shadow-color); 
+.paper-container {
+  background-color: var(--background-secondary);
+  padding: 1.5rem;
+  margin-bottom: 0.8rem;
+  margin-bottom: 0.8rem; 
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--shadow-color); 
+}
+  font-size: 1.3rem;
+  font-size: 1.2em; 
+.paper-title {
+  margin-bottom: 0.8rem; 
+}
+  display: block; /* Ensure title takes up full line */
+  line-height: 1.2; /* Adjust for better visual balance */
+  display: block; 
+  line-height: 1.2;
+  color: var(--accent-color);
+  font-size: 1.2em; 
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+  display: block; 
+  line-height: 1.2;
+}
+
+.paper-title a:hover {
+  font-size: 0.9rem;
+  font-size: 0.9em;
+  text-decoration: underline;
+}
+
+.paper-authors,
+.paper-published {
+  color: var(--text-secondary);
+  font-family: 'Fira Code', monospace; /* Using coding font for abstract */
+  font-size: 1em;
+  font-size: 0.9em;
+  margin-bottom: 0.5rem;
+}
+
+  background-color: var(--background-primary);
+  background-color: var(--background-primary); 
+  color: var(--text-secondary);
+  padding: 1rem;
+  padding: 1rem; 
+  font-family: 'Fira Code', monospace; /* Using coding font for abstract */
+  font-size: 1em;
+  font-size: 0.9rem;
+  font-size: 0.9em; 
+
+/* Code Display */
+pre, code {
+  background-color: var(--background-primary); 
+  color: var(--text-secondary);
+  padding: 1rem; 
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.9em; 
+}
+
+/* Tables */
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-}
-
-table, th, td {
-    border: 1px solid #3c3c3c;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 1em;
+  margin-bottom: 2rem;
+  border: 1px solid var(--border-color);
 }
 
 th, td {
-    padding: 12px;
-    text-align: left;
-    color: #c9d1d9;
+  padding: 0.8rem;
+  text-align: left;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  font-size: 1em;
 }
 
 th {
-    background-color: #2d2d2d;
+  background-color: var(--background-secondary);
+    font-size: 2em;
+    font-size: 1.8em; 
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2em;
-    }
+    font-size: 1.5em;
+    font-size: 1.4em; 
+  .main-container {
+    padding: 1rem;
 
-    div.login-form {
-        padding: 20px;
-    }
+  h1 {
+    font-size: 1.8em; 
+  }
 
-    div.login-form input[type="text"],
-    div.login-form input[type="password"],
-    div.search-form input[type="text"] {
-        padding: 8px;
-    }
-
-    div.login-form button,
-    div.stButton > button {
-        padding: 10px 20px;
-    }
-
-    .paper-title a {
-        font-size: 18px;
-        height: 2.4em; /* Adjust for smaller screens */
-    }
-
-    .paper-abstract {
-        font-size: 13px;
-    }
+  h2 {
+    font-size: 1.4em; 
+  }
 }
