@@ -54,7 +54,7 @@ def display_papers_with_pagination(papers, items_per_page=10):
                 col1, col2 = st.columns([1, 1])
                 with col1:
                     if st.button(f"Download PDF {start_idx + i + 1}", key=f"download_{start_idx + i}"):
-                        download_pdf(paper, folder_name)  # Pass the folder name
+                        download_pdf(paper)  # Pass the folder name
                         if st.session_state.get('logged_in'):
                             log_user_interaction(st.session_state['user_id'], paper['pdf_url'], 'download')
                 with col2:
